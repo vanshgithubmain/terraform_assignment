@@ -15,19 +15,22 @@ provider "aws" {
 }
 
 
-# resource "aws_s3_bucket" "test" {
-#   bucket = "myfirstbuckettss12"
-# }
 
-resource "aws_s3_bucket" "demo_bucket" {
-    # using count
+#COUNT
+resource "aws_s3_bucket" "demo_bucket1" {
 
     count = length((var.bucket_list))
     bucket = var.bucket_list[count.index]
 
-    # using for each
-
-    # for_each = toset(var.bucket_list)
-    # bucket = each.key
-  
 }
+
+#FOR EACH
+resource "aws_s3_bucket" "demo_bucket2" {
+    
+
+    for_each = toset(var.bucket_list2)
+    bucket = each.key
+   
+}
+
+
